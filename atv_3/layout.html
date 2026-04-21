@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Layouts 1–6</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: sans-serif; background: #f0f0f0; color: #333; }
+
+    .layout-label {
+      background: #222; color: #fff; font-size: 13px; font-weight: bold;
+      padding: 6px 14px; letter-spacing: 1px;
+    }
+
+    /* ══════════════════════════════════════════════
+       LAYOUT 1 – Dropbox
+    ══════════════════════════════════════════════ */
+    #layout1 { border: 3px solid #0061FF; margin-bottom: 40px; }
+
+    #layout1 .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px; padding: 0 24px;
+      border-bottom: 2px solid #0061FF; background: #fff;
+    }
+    #layout1 .nav-logo   { width: 120px; height: 30px; background: #cce0ff; border: 1px solid #0061FF; }
+    #layout1 .nav-links  { display: flex; gap: 12px; }
+    #layout1 .nav-link   { width: 80px; height: 28px; background: #e8f0fe; border: 1px solid #0061FF; }
+    #layout1 .nav-cta    { width: 130px; height: 36px; background: #0061FF; border: 1px solid #004cc7; }
+
+    #layout1 .hero {
+      display: flex; min-height: 400px;
+    }
+    #layout1 .hero-text {
+      flex: 1; display: flex; flex-direction: column; justify-content: center;
+      gap: 16px; padding: 40px 32px;
+      border-right: 2px dashed #0061FF; background: #f5f9ff;
+    }
+    #layout1 .hero-title  { width: 90%; height: 120px; background: #cce0ff; border: 1px solid #0061FF; }
+    #layout1 .hero-desc   { width: 85%; height: 70px;  background: #e8f0fe; border: 1px solid #0061FF; }
+    #layout1 .hero-link   { width: 60%; height: 24px;  background: #dde8fb; border: 1px dashed #0061FF; }
+    #layout1 .hero-btn    { width: 280px; height: 50px; background: #0061FF; border: 1px solid #004cc7; }
+    #layout1 .hero-sub    { width: 120px; height: 22px; background: #e8f0fe; border: 1px solid #0061FF; }
+
+    #layout1 .hero-visual {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      background: #1a1a1a; position: relative;
+    }
+    #layout1 .hero-mockup { width: 340px; height: 260px; background: #333; border: 2px solid #555; position: relative; }
+    #layout1 .hero-mockup::before {
+      content: 'Mockup / Screenshot';
+      position: absolute; inset: 0; display: flex; align-items: center;
+      justify-content: center; color: #aaa; font-size: 12px;
+    }
+    #layout1 .hero-folder {
+      position: absolute; bottom: 60px; left: 30px;
+      width: 60px; height: 50px; background: #5b9bd5; border: 1px solid #4a80b5;
+    }
+
+    /* ══════════════════════════════════════════════
+       LAYOUT 2 – Figma
+    ══════════════════════════════════════════════ */
+    #layout2 { border: 3px solid #e33c32; margin-bottom: 40px; }
+
+    #layout2 .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px; padding: 0 24px; border-bottom: 2px solid #e33c32; background: #fff;
+    }
+    #layout2 .nav-logo    { width: 36px; height: 36px; background: #fde; border: 1px solid #e33c32; border-radius: 4px; }
+    #layout2 .nav-links   { display: flex; gap: 10px; flex: 1; padding: 0 20px; }
+    #layout2 .nav-link    { width: 90px; height: 28px; background: #fce8e8; border: 1px solid #e33c32; }
+    #layout2 .nav-actions { display: flex; gap: 10px; }
+    #layout2 .nav-btn-outline { width: 100px; height: 32px; background: #fff; border: 2px solid #222; }
+    #layout2 .nav-btn-fill    { width: 140px; height: 32px; background: #222; border: 1px solid #222; }
+
+    #layout2 .hero {
+      display: flex; min-height: 380px; background: #fafafa;
+    }
+    #layout2 .hero-text {
+      flex: 1; display: flex; flex-direction: column; justify-content: center;
+      gap: 20px; padding: 40px 40px;
+      border-right: 2px dashed #e33c32;
+    }
+    #layout2 .hero-title  { width: 80%; height: 80px;  background: #f9d5d3; border: 1px solid #e33c32; }
+    #layout2 .hero-desc   { width: 90%; height: 90px;  background: #fce8e8; border: 1px solid #e33c32; }
+    #layout2 .hero-btns   { display: flex; gap: 12px; }
+    #layout2 .btn-primary  { width: 140px; height: 44px; background: #222; border: 1px solid #222; }
+    #layout2 .btn-secondary{ width: 180px; height: 44px; background: #fff; border: 2px solid #222; }
+
+    #layout2 .hero-visual {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 16px; padding: 20px; background: #f5f5f5;
+    }
+    #layout2 .shape-circle  { width: 100px; height: 100px; border-radius: 50%; background: #a5c8f0; border: 2px solid #4a90d9; }
+    #layout2 .shape-diamond {
+      width: 80px; height: 80px; background: #7b2a2a; border: 2px solid #5a1a1a;
+      transform: rotate(45deg);
+    }
+    #layout2 .shape-dots    { display: flex; gap: 6px; }
+    #layout2 .dot           { width: 16px; height: 16px; border-radius: 50%; background: #f472b6; border: 1px solid #ec4899; }
+    #layout2 .shape-cloud   { width: 90px; height: 60px; background: #86efac; border: 2px solid #4ade80; border-radius: 40px; }
+
+    /* ══════════════════════════════════════════════
+       LAYOUT 3 – GitHub
+    ══════════════════════════════════════════════ */
+    #layout3 { border: 3px solid #238636; margin-bottom: 40px; }
+
+    #layout3 .nav {
+      display: flex; align-items: center; gap: 16px;
+      height: 56px; padding: 0 24px;
+      border-bottom: 2px solid #238636; background: #0d1117;
+    }
+    #layout3 .nav-logo  { width: 36px; height: 36px; background: #30363d; border: 1px solid #238636; border-radius: 50%; }
+    #layout3 .nav-links { display: flex; gap: 10px; flex: 1; }
+    #layout3 .nav-link  { width: 80px; height: 28px; background: #161b22; border: 1px solid #30363d; }
+    #layout3 .nav-search{ width: 200px; height: 30px; background: #161b22; border: 1px solid #30363d; }
+    #layout3 .nav-auth  { display: flex; gap: 8px; }
+    #layout3 .nav-auth-link{ width: 60px; height: 28px; background: #21262d; border: 1px solid #30363d; }
+    #layout3 .nav-auth-btn { width: 110px; height: 30px; background: #238636; border: 1px solid #2ea043; }
+
+    #layout3 .hero {
+      min-height: 340px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 24px;
+      padding: 60px 32px; background: #0d1117; text-align: center;
+    }
+    #layout3 .hero-title   { width: 700px; height: 100px; background: #161b22; border: 1px solid #238636; }
+    #layout3 .hero-subtitle{ width: 500px; height: 60px;  background: #161b22; border: 1px dashed #30363d; }
+    #layout3 .hero-form    { display: flex; gap: 0; }
+    #layout3 .hero-input   { width: 320px; height: 46px; background: #0d1117; border: 1px solid #30363d; }
+    #layout3 .hero-btn-green { width: 180px; height: 46px; background: #238636; border: 1px solid #2ea043; }
+    #layout3 .hero-btn-dark  { width: 200px; height: 46px; background: #21262d; border: 1px solid #30363d; margin-left: 12px; }
+
+    /* ══════════════════════════════════════════════
+       LAYOUT 4 – Netflix
+    ══════════════════════════════════════════════ */
+    #layout4 { border: 3px solid #e50914; margin-bottom: 40px; }
+
+    #layout4 .section { padding: 24px; background: #141414; }
+
+    #layout4 .section-title { width: 100px; height: 24px; background: #333; border: 1px solid #555; margin-bottom: 12px; }
+
+    #layout4 .cards-row { display: flex; gap: 10px; }
+    #layout4 .card-numbered {
+      position: relative; width: 180px; height: 120px;
+      background: #222; border: 1px solid #444; flex-shrink: 0;
+    }
+    #layout4 .card-numbered::before {
+      content: attr(data-num);
+      position: absolute; bottom: 4px; left: 6px;
+      font-size: 52px; font-weight: 900; color: rgba(255,255,255,0.15);
+    }
+
+    #layout4 .section2 { padding: 24px; background: #141414; border-top: 2px solid #e50914; }
+    #layout4 .features-row { display: flex; gap: 12px; }
+    #layout4 .feature-card {
+      flex: 1; height: 160px; background: #1a1a2e; border: 1px solid #333;
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 16px;
+    }
+    #layout4 .feat-title { width: 70%; height: 32px; background: #2a2a4a; border: 1px solid #444; }
+    #layout4 .feat-desc  { width: 90%; height: 48px; background: #222; border: 1px dashed #444; }
+    #layout4 .feat-icon  { width: 40px; height: 40px; background: #e50914; border: 1px solid #b0070f; align-self: flex-end; border-radius: 4px; }
+
+    /* ══════════════════════════════════════════════
+       LAYOUT 5 – Lista de notícias
+    ══════════════════════════════════════════════ */
+    #layout5 { border: 3px solid #00a550; margin-bottom: 40px; }
+
+    #layout5 .news-list { display: flex; flex-direction: column; gap: 0; background: #fff; }
+    #layout5 .news-item {
+      display: flex; gap: 16px; padding: 20px 16px;
+      border-bottom: 1px solid #ddd; align-items: flex-start;
+    }
+    #layout5 .news-thumb { width: 160px; height: 110px; background: #ccc; border: 1px solid #aaa; flex-shrink: 0; }
+    #layout5 .news-body  { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+    #layout5 .news-tag   { width: 70px;  height: 18px; background: #00a550; border: 1px solid #007a3b; }
+    #layout5 .news-title { width: 95%;   height: 44px; background: #e6f4ee; border: 1px solid #00a550; }
+    #layout5 .news-desc  { width: 80%;   height: 22px; background: #f0f0f0; border: 1px dashed #aaa; }
+    #layout5 .news-meta  { width: 60%;   height: 16px; background: #f8f8f8; border: 1px dashed #ccc; }
+
+    /* ══════════════════════════════════════════════
+       LAYOUT 6 –  (Grid)
+    ══════════════════════════════════════════════ */
+    #layout6 { border: 3px solid #ea4c89; margin-bottom: 40px; }
+
+    #layout6 .nav {
+      display: flex; align-items: center; gap: 16px;
+      height: 56px; padding: 0 24px; border-bottom: 2px solid #ea4c89; background: #fff;
+    }
+    #layout6 .nav-logo   { width: 100px; height: 28px; background: #fde8f3; border: 1px solid #ea4c89; }
+    #layout6 .nav-search { flex: 1; max-width: 320px; height: 32px; background: #f5f5f5; border: 1px solid #ddd; }
+    #layout6 .nav-links  { display: flex; gap: 10px; }
+    #layout6 .nav-link   { width: 80px; height: 28px; background: #fff5fb; border: 1px solid #ea4c89; }
+    #layout6 .nav-auth   { display: flex; gap: 8px; }
+    #layout6 .nav-signin { width: 80px;  height: 32px; background: #fff;    border: 1px solid #ccc; }
+    #layout6 .nav-login  { width: 70px;  height: 32px; background: #222;    border: 1px solid #222; }
+
+    #layout6 .filters {
+      display: flex; align-items: center; gap: 10px; padding: 12px 24px;
+      border-bottom: 1px solid #eee; background: #fafafa; flex-wrap: wrap;
+    }
+    #layout6 .filter-sort   { width: 100px; height: 30px; background: #f0f0f0; border: 1px solid #ccc; }
+    #layout6 .filter-tab    { width: 90px;  height: 28px; background: #fde8f3; border: 1px solid #ea4c89; }
+    #layout6 .filter-tab.active { background: #ea4c89; }
+
+    #layout6 .grid-container { padding: 20px 24px; background: #fff; }
+    #layout6 .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    #layout6 .grid-item {
+      border: 2px solid #ea4c89; background: #fde8f3;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    #layout6 .grid-thumb { width: 100%; height: 170px; background: #ddd; border-bottom: 1px solid #ea4c89; }
+    #layout6 .grid-meta  { padding: 8px; display: flex; gap: 8px; align-items: center; }
+    #layout6 .grid-avatar{ width: 28px; height: 28px; border-radius: 50%; background: #ea4c89; flex-shrink: 0; }
+    #layout6 .grid-info  { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    #layout6 .grid-name  { width: 70%; height: 12px; background: #ccc; }
+    #layout6 .grid-stats { width: 50%; height: 10px; background: #ddd; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════ LAYOUT 1 – Dropbox ═══════════ -->
+  <div class="layout-label">Layout 1 — Dropbox</div>
+  <section id="layout1">
+    <header class="nav">
+      <div class="nav-logo"></div>
+      <nav class="nav-links">
+        <div class="nav-link"></div>
+        <div class="nav-link"></div>
+        <div class="nav-link"></div>
+      </nav>
+      <div class="nav-cta"></div>
+    </header>
+    <main class="hero">
+      <div class="hero-text">
+        <div class="hero-title"></div>
+        <div class="hero-desc"></div>
+        <div class="hero-link"></div>
+        <div class="hero-btn"></div>
+        <div class="hero-sub"></div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-mockup"></div>
+        <div class="hero-folder"></div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ═══════════ LAYOUT 2 – Figma ═══════════ -->
+  <div class="layout-label">Layout 2 — Figma</div>
+  <section id="layout2">
+    <header class="nav">
+      <div class="nav-logo"></div>
+      <nav class="nav-links">
+        <div class="nav-link"></div>
+        <div class="nav-link"></div>
+        <div class="nav-link"></div>
+        <div class="nav-link"></div>
+        <div class="nav-link"></div>
+      </nav>
+      <div class="nav-actions">
+        <div class="nav-btn-outline"></div>
+        <div class="nav-btn-fill"></div>
+      </div>
+    </header>
+    <main class="hero">
+      <div class="hero-text">
+        <div class="hero-title"></div>
+        <div class="hero-desc"></div>
+        <div class="hero-btns">
+          <div class="btn-primary"></div>
+          <div class="btn-secondary"></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="shape-circle"></div>
+        <div class="shape-dots">
+          <div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="shape-diamond"></div>
+        <div class="shape-dots">
+          <div class="dot"></div><div class="dot"></div>
+        </div>
+        <div class="shape-cloud"></div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ═══════════ LAYOUT 3 – GitHub ═══════════ -->
+  <div class="layout-label">Layout 3 — GitHub</div>
+  <section id="layout3">
+    <header class="nav">
+      <div class="nav-logo"></div>
+      <nav class="nav-links">
+        <div class="nav-link"></div>
+        <div class="nav-link"></div>
+        <div class="nav-link"></div>
+        <div class="nav-link"></div>
+        <div class="nav-link"></div>
+      </nav>
+      <div class="nav-search"></div>
+      <div class="nav-auth">
+        <div class="nav-auth-link"></div>
+        <div class="nav-auth-btn"></div>
+      </div>
+    </header>
+    <main class="hero">
+      <div class="hero-title"></div>
+      <div class="hero-subtitle"></div>
+      <div class="hero-form">
+        <div class="hero-input"></div>
+        <div class="hero-btn-green"></div>
+        <div class="hero-btn-dark"></div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ═══════════ LAYOUT 4 – Netflix ═══════════ -->
+  <div class="layout-label">Layout 4 — Netflix</div>
+  <section id="layout4">
+    <div class="section">
+      <div class="section-title"></div>
+      <div class="cards-row">
+        <div class="card-numbered" data-num="1"></div>
+        <div class="card-numbered" data-num="2"></div>
+        <div class="card-numbered" data-num="3"></div>
+        <div class="card-numbered" data-num="4"></div>
+        <div class="card-numbered" data-num="5"></div>
+        <div class="card-numbered" data-num="6"></div>
+      </div>
+    </div>
+    <div class="section2">
+      <div class="section-title" style="background:#333;border-color:#e50914;margin-bottom:14px;"></div>
+      <div class="features-row">
+        <div class="feature-card">
+          <div class="feat-title"></div>
+          <div class="feat-desc"></div>
+          <div class="feat-icon"></div>
+        </div>
+        <div class="feature-card">
+          <div class="feat-title"></div>
+          <div class="feat-desc"></div>
+          <div class="feat-icon" style="background:#a855f7;border-color:#9333ea;"></div>
+        </div>
+        <div class="feature-card">
+          <div class="feat-title"></div>
+          <div class="feat-desc"></div>
+          <div class="feat-icon" style="background:#f97316;border-color:#ea580c;"></div>
+        </div>
+        <div class="feature-card">
+          <div class="feat-title"></div>
+          <div class="feat-desc"></div>
+          <div class="feat-icon" style="background:#3b82f6;border-color:#2563eb;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ LAYOUT 5 – (Lista de notícias) ═══════════ -->
+  <div class="layout-label">Layout 5 — (Lista de notícias)</div>
+  <section id="layout5">
+    <main class="news-list">
+      <article class="news-item">
+        <div class="news-thumb"></div>
+        <div class="news-body">
+          <div class="news-tag"></div>
+          <div class="news-title"></div>
+          <div class="news-desc"></div>
+          <div class="news-meta"></div>
+        </div>
+      </article>
+      <article class="news-item">
+        <div class="news-thumb"></div>
+        <div class="news-body">
+          <div class="news-tag"></div>
+          <div class="news-title"></div>
+          <div class="news-desc"></div>
+          <div class="news-meta"></div>
+        </div>
+      </article>
+      <article class="news-item">
+        <div class="news-thumb"></div>
+        <div class="news-body">
+          <div class="news-tag"></div>
+          <div class="news-title"></div>
+          <div class="news-desc"></div>
+          <div class="news-meta"></div>
+        </div>
+      </article>
+    </main>
+  </section>
+
+  <!-- ═══════════ LAYOUT 6 - (Grid) ═══════════ -->
+  <div class="layout-label">Layout 6 — (Grid)</div>
+  <section id="layout6">
+    <header class="nav">
+      <div class="nav-logo"></div>
+      <div class="nav-search"></div>
+      <nav class="nav-links">
+        <div class="nav-link"></div>
+        <div class="nav-link"></div>
+        <div class="nav-link"></div>
+        <div class="nav-link"></div>
+      </nav>
+      <div class="nav-auth">
+        <div class="nav-signin"></div>
+        <div class="nav-login"></div>
+      </div>
+    </header>
+    <div class="filters">
+      <div class="filter-sort"></div>
+      <div class="filter-tab active"></div>
+      <div class="filter-tab"></div>
+      <div class="filter-tab"></div>
+      <div class="filter-tab"></div>
+      <div class="filter-tab"></div>
+      <div class="filter-tab"></div>
+      <div class="filter-tab"></div>
+      <div class="filter-tab"></div>
+    </div>
+    <div class="grid-container">
+      <div class="grid">
+        <div class="grid-item">
+          <div class="grid-thumb"></div>
+          <div class="grid-meta">
+            <div class="grid-avatar"></div>
+            <div class="grid-info">
+              <div class="grid-name"></div>
+              <div class="grid-stats"></div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-thumb"></div>
+          <div class="grid-meta">
+            <div class="grid-avatar"></div>
+            <div class="grid-info">
+              <div class="grid-name"></div>
+              <div class="grid-stats"></div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-thumb"></div>
+          <div class="grid-meta">
+            <div class="grid-avatar"></div>
+            <div class="grid-info">
+              <div class="grid-name"></div>
+              <div class="grid-stats"></div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-thumb"></div>
+          <div class="grid-meta">
+            <div class="grid-avatar"></div>
+            <div class="grid-info">
+              <div class="grid-name"></div>
+              <div class="grid-stats"></div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-thumb"></div>
+          <div class="grid-meta">
+            <div class="grid-avatar"></div>
+            <div class="grid-info">
+              <div class="grid-name"></div>
+              <div class="grid-stats"></div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-thumb"></div>
+          <div class="grid-meta">
+            <div class="grid-avatar"></div>
+            <div class="grid-info">
+              <div class="grid-name"></div>
+              <div class="grid-stats"></div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-thumb"></div>
+          <div class="grid-meta">
+            <div class="grid-avatar"></div>
+            <div class="grid-info">
+              <div class="grid-name"></div>
+              <div class="grid-stats"></div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-thumb"></div>
+          <div class="grid-meta">
+            <div class="grid-avatar"></div>
+            <div class="grid-info">
+              <div class="grid-name"></div>
+              <div class="grid-stats"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
