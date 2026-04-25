@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hytale Brasil — O Portal do Aventureiro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --night:    #0c0e14;
+      --deep:     #131620;
+      --surface:  #1a1e2e;
+      --panel:    #212540;
+      --gold:     #c9963a;
+      --gold-lt:  #e8b84b;
+      --teal:     #2bb5a0;
+      --teal-dk:  #1d8a78;
+      --red:      #c0392b;
+      --text:     #ddd4b8;
+      --muted:    #8a8070;
+      --border:   rgba(201,150,58,.25);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--night);
+      color: var(--text);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a { color: var(--gold-lt); text-decoration: none; }
+    a:hover { color: #fff; }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cinzel Decorative', serif;
+      line-height: 1.2;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, #0c0e14 0%, #1a1427 60%, #0f1520 100%);
+      border-bottom: 2px solid var(--gold);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      min-height: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(43,181,160,.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 80% 50%, rgba(201,150,58,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: var(--panel);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 22px;
+      color: var(--gold);
+      flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(201,150,58,.3);
+    }
+
+    .header-text { position: relative; }
+
+    .header-text h1 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--gold-lt);
+      letter-spacing: .04em;
+      text-shadow: 0 0 30px rgba(201,150,58,.5);
+    }
+
+    .header-text p {
+      font-style: italic;
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: 2px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--teal-dk);
+      border-bottom: 1px solid rgba(43,181,160,.4);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      display: block;
+      color: #fff;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 14px 24px;
+      transition: background .2s, color .2s;
+    }
+
+    nav ul li a:hover {
+      background: rgba(0,0,0,.25);
+      color: var(--gold-lt);
+    }
+
+    /* ── LAYOUT WRAPPER ── */
+    .page-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 36px 24px 48px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* ── SECTION ── */
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 32px;
+      position: relative;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      border-radius: 6px 6px 0 0;
+    }
+
+    section h2 {
+      font-size: 1.25rem;
+      color: var(--gold-lt);
+      margin-bottom: 14px;
+    }
+
+    section p {
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    section p:last-child { margin-bottom: 0; }
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 20px 0;
+    }
+
+    /* ── FEATURES GRID inside section ── */
+    .features {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .feature-card {
+      flex: 1;
+      min-width: 140px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .feature-card .icon {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .feature-card h4 {
+      font-size: .7rem;
+      color: var(--gold);
+      letter-spacing: .1em;
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      font-size: .85rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* ── ARTICLE ── */
+    article {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 6px 6px 0;
+      padding: 24px 28px;
+    }
+
+    article .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    article .article-badge {
+      background: var(--teal-dk);
+      color: #fff;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      padding: 3px 10px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    article .article-date {
+      font-size: .82rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    article h3 {
+      font-size: 1.1rem;
+      color: var(--gold-lt);
+      margin-bottom: 12px;
+    }
+
+    article p {
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    article p:last-child { margin-bottom: 0; }
+
+    /* ── ASIDE ── */
+    aside {
+      width: 260px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .aside-widget {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .aside-widget::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .aside-widget h3 {
+      font-size: .8rem;
+      color: var(--gold);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .aside-widget ul {
+      list-style: none;
+    }
+
+    .aside-widget ul li {
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+    }
+
+    .aside-widget ul li:last-child { border-bottom: none; }
+
+    .aside-widget ul li::before {
+      content: '▸';
+      color: var(--teal);
+      font-size: .75rem;
+    }
+
+    .aside-widget p {
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* social icons row */
+    .social-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      font-size: 1rem;
+      transition: background .2s, border-color .2s;
+    }
+
+    .social-btn:hover {
+      background: var(--teal-dk);
+      border-color: var(--teal);
+    }
+
+    /* stat pills */
+    .stat-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .stat-pill {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: .78rem;
+      color: var(--gold-lt);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--deep);
+      border-top: 2px solid var(--gold);
+      padding: 28px 40px;
+      text-align: center;
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.8;
+    }
+
+    footer p strong {
+      color: var(--gold-lt);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 820px) {
+      .page-wrapper {
+        flex-direction: column;
+      }
+      aside {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .aside-widget {
+        flex: 1;
+        min-width: 220px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      header { padding: 16px 20px; }
+      nav ul li a { padding: 12px 14px; font-size: .65rem; }
+      section, article { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header>
+    <div class="header-logo">H</div>
+    <div class="header-text">
+      <h1>Hytale Brasil</h1>
+      <p>O portal definitivo do aventureiro — notícias, guias e comunidade</p>
+    </div>
+  </header>
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav>
+    <ul>
+      <li><a href="#">Início</a></li>
+      <li><a href="#">Notícias</a></li>
+      <li><a href="#">Gameplay</a></li>
+      <li><a href="#">Guias</a></li>
+      <li><a href="#">Mods</a></li>
+      <li><a href="#">Comunidade</a></li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════ PAGE WRAPPER ═══════════ -->
+  <div class="page-wrapper">
+
+    <!-- ═══════════ MAIN ═══════════ -->
+    <main>
+
+      <!-- Seção 1 -->
+      <section>
+        <h2>O Que é Hytale?</h2>
+        <p>
+          Hytale é um jogo sandbox de aventura desenvolvido pela <strong>Hypixel Studios</strong>,
+          misturando exploração, combate, construção e um robusto sistema de modding.
+          Com um universo proceduralmente gerado e dividido em zonas distintas, cada partida
+          oferece uma experiência única e imprevisível.
+        </p>
+        <p>
+          O projeto promete ir além dos jogos do gênero ao oferecer ferramentas nativas de criação
+          de conteúdo — desde scripts Lua até editores visuais — colocando o poder criativo
+          diretamente nas mãos dos jogadores.
+        </p>
+
+        <hr class="section-divider" />
+
+        <div class="features">
+          <div class="feature-card">
+            <span class="icon">⚔️</span>
+            <h4>Combate</h4>
+            <p>Sistema dinâmico com habilidades e builds únicas</p>
+          </div>
+          <div class="feature-card">
+            <span class="icon">🏗️</span>
+            <h4>Construção</h4>
+            <p>Ferramentas avançadas para criar qualquer estrutura</p>
+          </div>
+          <div class="feature-card">
+            <span class="icon">🧩</span>
+            <h4>Modding</h4>
+            <p>Engine própria de mods acessível a todos os criadores</p>
+          </div>
+          <div class="feature-card">
+            <span class="icon">🌍</span>
+            <h4>Mundo Vivo</h4>
+            <p>Geração procedural com biomas e eventos dinâmicos</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 2 -->
+      <section>
+        <h2>Mundo e Zonas</h2>
+        <p>
+          O universo de Hytale é organizado em <strong>Orbs</strong> — planetas distintos com
+          regras, fauna e flora próprias. Em Orbis, o planeta central, os jogadores encontram
+          desde florestas nevadas até desertos vulcânicos, cada um habitado por criaturas únicas
+          e masmorras escondidas.
+        </p>
+        <p>
+          Além de Orbis, zonas como o <em>Underline</em> e reinos dimensionais ampliam o escopo
+          da aventura, garantindo dezenas de horas de exploração mesmo para os jogadores mais
+          experientes.
+        </p>
+
+        <!-- Article dentro da seção -->
+        <article>
+          <div class="article-meta">
+            <span class="article-badge">Artigo em Destaque</span>
+            <span class="article-date">20 de março de 2026</span>
+          </div>
+          <h3>Hypixel Studios Revela Novo Sistema de Dungeon</h3>
+          <p>
+            Em sua atualização mais recente, os desenvolvedores compartilharam detalhes sobre
+            o sistema de masmorras procedurais de Hytale. Cada dungeon é única, com andares
+            gerados dinamicamente, armadilhas adaptativas e chefes cujo comportamento muda
+            conforme a composição do grupo de aventureiros.
+          </p>
+          <p>
+            A novidade mais esperada é o sistema de <strong>recompensas em camadas</strong>:
+            quanto mais fundo o jogador explorar, mais raros serão os itens encontrados —
+            criando uma curva de risco e recompensa orgânica e viciante.
+          </p>
+        </article>
+      </section>
+
+    </main><!-- /main -->
+
+    <!-- ═══════════ ASIDE ═══════════ -->
+    <aside>
+
+      <div class="aside-widget">
+        <h3>Informações do Jogo</h3>
+        <ul>
+          <li>Desenvolvedor: Hypixel Studios</li>
+          <li>Publicador: Riot Games</li>
+          <li>Gênero: Sandbox / RPG</li>
+          <li>Plataforma: PC</li>
+          <li>Status: Em desenvolvimento</li>
+        </ul>
+        <div class="stat-row">
+          <span class="stat-pill">🎮 Multiplayer</span>
+          <span class="stat-pill">🛠️ Moddable</span>
+          <span class="stat-pill">🌐 Online</span>
+        </div>
+      </div>
+
+      <div class="aside-widget">
+        <h3>Últimas Notícias</h3>
+        <ul>
+          <li>Sistema de Dungeon revelado</li>
+          <li>Nova zona: Highlands</li>
+          <li>Dev Diary #12 disponível</li>
+          <li>Parceria com criadores</li>
+          <li>Beta fecha 500k inscritos</li>
+        </ul>
+      </div>
+
+      <div class="aside-widget">
+        <h3>Comunidade</h3>
+        <p>
+          Junte-se a milhares de aventureiros. Compartilhe builds, mods e teorias
+          sobre o universo de Hytale.
+        </p>
+        <div class="social-row">
+          <a href="#" class="social-btn" title="Discord">💬</a>
+          <a href="#" class="social-btn" title="Twitter">🐦</a>
+          <a href="#" class="social-btn" title="YouTube">▶️</a>
+          <a href="#" class="social-btn" title="Reddit">🔗</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- /page-wrapper -->
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <p>
+      &copy; 2026 <strong>Hytale Brasil</strong> — Todos os direitos reservados.<br />
+      Projeto desenvolvido por <strong>Gustavo</strong> para fins acadêmicos — Desenvolvimento Web.
+    </p>
+  </footer>
+
+</body>
+</html>
